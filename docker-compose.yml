@@ -1,0 +1,22 @@
+version: '3'
+services: 
+  web:
+    build: .
+    volumes:
+    - '.:/var/www/html'
+    ports:
+    - '8000:80'
+    networks:
+      - network
+  mongo:
+    image: mongo
+    container_name: 'mongodb'
+    ports:
+    - '27017:27017'
+    volumes: 
+    - ./data/db:/data/db
+    networks:
+      - network
+networks:
+  network:
+    driver: bridge
